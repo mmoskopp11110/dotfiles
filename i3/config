@@ -2,7 +2,7 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
-set $mod Mod4
+set $mod Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -99,9 +99,9 @@ bindsym $mod+a focus parent
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1"
-set $ws2 "2: web"
+set $ws2 "2"
 set $ws3 "3"
-set $ws4 "4: mail"
+set $ws4 "4"
 set $ws5 "5"
 set $ws6 "6"
 set $ws7 "7"
@@ -167,41 +167,15 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-
-## custom
-
-# move focused workspace
-bindsym $mod+Mod1+l move workspace to output right
-bindsym $mod+Mod1+j move workspace to output down
-bindsym $mod+Mod1+k move workspace to output up
-bindsym $mod+Mod1+h move workspace to output left
-# alternatively, you can use the cursor keys:
-bindsym $mod+Mod1+Left move workspace to output left
-bindsym $mod+Mod1+Down move workspace to output down
-bindsym $mod+Mod1+Up move workspace to output up
-bindsym $mod+Mod1+Right move workspace to output right
-
-# window borders/floating
+## custom section
+# layout
 default_border pixel 1
 default_floating_border pixel 3
 hide_edge_borders both
 no_focus [window_role="pop-up"]
 
-# autostart
-# background
-exec_always --no-startup-id feh --bg-fill /usr/share/backgrounds/fedora-workstation/aurora-over-iceland.png
-# bar
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-
-# set monitors and default outputs for workspaces
-set $mon1 "DVI-I-1" # left
-set $mon2 "HDMI-0" # right
-workspace $ws1 output $mon1
-workspace $ws4 output $mon2
-workspace $ws2 output $mon2
-
-# program specific layout
+# specific windows
 for_window [class="Main.py"] floating enable
-assign [class="Thunderbird"] $ws4
-assign [class="oogle-chrome"] $ws2
 
+# execs
+# exec_always --no-startup-id $HOME/.config/polybar/launch.sh
